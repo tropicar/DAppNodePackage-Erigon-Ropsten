@@ -36,8 +36,10 @@ fi
 # Erigon #
 ##########
 
-exec erigon --datadir=${DATADIR} \
-    --chain ropsten
+exec erigon --datadir=$DATADIR \
+    --chain=ropsten \
+    --engine.port=8551 \
+    --engine.addr=0.0.0.0 \
     --http.addr=0.0.0.0 \
     --http.vhosts=* \
     --http.corsdomain=* \
@@ -49,5 +51,7 @@ exec erigon --datadir=${DATADIR} \
     --pprof \
     --pprof.addr=0.0.0.0 \
     --pprof.port=6061 \
-    --port=${P2P_PORT} \
-    ${ERIGON_EXTRA_OPTS}
+    --authrpc.jwtsecret=/jwtsecret \
+    #--port=$P2P_PORT \
+    #--verbosity=4
+    $ERIGON_EXTRA_OPTS
